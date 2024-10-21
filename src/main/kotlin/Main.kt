@@ -1,5 +1,9 @@
 package org.example
 
+import org.example.classes.Car
+import org.example.classes.Direction
+import org.example.classes.Moto
+import org.example.classes.User
 import kotlin.math.pow
 
 fun main() {
@@ -231,4 +235,95 @@ fun main() {
     // Ассоциативный массив
     val mutableMap = mutableMapOf(1 to "1", "Str" to 3, false to "r")
     mutableMap[1] = false
+
+    // ЗАНЯТИЕ 3
+    println("ФУНКЦИИ")
+    // Неявная передача параметров
+    val sum1 = sum(2, 2)
+    // Явная передеча параметров
+    val sum2 = sum(b = 10, a = 20)
+    // Комбинированная передача параметров
+    val sum3 = sum(a = 12.4, 5.2)
+    println("Сумма $sum1, $sum2 и $sum3")
+    println("Функция с параметром по умолчанию: ${par(10, 20)}")
+    println("Функция с измененным параметром по умолчанию: ${par(10, 20, 10.0)}")
+    // Анонимная лямбда функции
+    val square = { number: Int -> number * number }
+    println("Квадрат числа 5 = ${square(5)}")
+    // Вызов функции высшего порядка
+    val result1 = operate(3, 3) { x, y -> x + y }
+    val result2 = operate(3, 3) { x, y -> x - y }
+    val result3 = operate(3, 3) { x, y -> x * y }
+    val result4 = operate(3, 3) { x, y -> x / y }
+    println("Вызов функции высшего порядка $result1")
+    println("Вызов функции высшего порядка $result2")
+    println("Вызов функции высшего порядка $result3")
+    println("Вызов функции высшего порядка $result4")
+    // Вызов функции расширения
+    val hello = "Hello, World!"
+    println(hello.repeat(5))
+
+    // Создание объекта класса
+    println("РАБОТА С КЛАССАМИ")
+    val toyota = Car("Toyota", "Rav4")
+    val bmw = Car("BWW", "Series 5")
+    val renault = Car("Renault", "Logan")
+    bmw.color = "Black"
+    bmw.go()
+
+    renault.setEngine(2.0)
+    renault.doors
+
+    println("Машина ${toyota.brand} ${toyota.name}, цвет - ${toyota.color}")
+    println("Машина ${bmw.brand} ${bmw.name}, цвет - ${bmw.color}")
+    println("Машина ${renault.brand} ${renault.name}, цвет - ${renault.color}, двигатель - ${renault.getEngine()}")
+
+    println(Car.checkWheel())
+    println(Car.wheel)
+
+    val moto = Moto("Honda", "Name")
+    println("Мотоцикл ${moto.brand}, ${moto.name}")
+    println(moto.toString())
+
+    // Создание объекта Data класса
+    val user1 = User("John", 26)
+    val user2 = user1.copy(age = 30)
+    println(user1)
+    println(user2)
+
+    // Использование перечислений
+    val direction = Direction.SOUTH
+
+    when (direction) {
+        Direction.NORTH -> println(Direction.NORTH)
+        Direction.SOUTH -> println(Direction.SOUTH)
+        Direction.EAST -> println(Direction.EAST)
+        Direction.WEST -> println(Direction.WEST)
+    }
+}
+
+fun sum(a: Int, b: Int): Int {
+    println("A = $a")
+    println("B = $b")
+    return a + b
+}
+
+// Однострочная функция
+fun sum(a: Double, b: Double): Double = a + b
+
+// Функция с параметром по умолчанию
+fun par(a: Int, b: Int, g: Double = 9.8): Double = (a + b) * g
+
+// Функция высшего порядка
+fun operate(a: Int, b: Int, operation: (Int, Int) -> Int): Int {
+    return operation(a, b)
+}
+
+// Расширение функции
+fun String.repeat(times: Int): String {
+    var result = ""
+    for (i in 1..times) {
+        result += " $this"
+    }
+    return result
 }
