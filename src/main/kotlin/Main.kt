@@ -1,9 +1,6 @@
 package org.example
 
-import org.example.classes.Car
-import org.example.classes.Direction
-import org.example.classes.Moto
-import org.example.classes.User
+import org.example.classes.*
 import kotlin.math.pow
 
 fun main() {
@@ -300,6 +297,25 @@ fun main() {
         Direction.EAST -> println(Direction.EAST)
         Direction.WEST -> println(Direction.WEST)
     }
+
+    // ЗАНЯТИЕ 4
+    val person = Person()
+    println(person.id)
+    println(person.address)
+    // Создание объекта дочернего класса Person
+    val max = Max()
+    println(max.id)
+    println(max.address)
+    // Создание объектов дочерних классов Circle, Rectangle
+    val circle = Circle(5.0)
+    val rectangle = Rectangle(4.0, 3.0)
+    circle.describe()
+    rectangle.describe()
+    // Создание объекта класса Button
+    val button = Button()
+    button.click()
+    button.focus()
+    button.showOff()
 }
 
 fun sum(a: Int, b: Int): Int {
